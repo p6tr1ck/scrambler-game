@@ -36,7 +36,16 @@ playBtn.addEventListener('click', e => {
                 <p>I</p>
                 <p>C</p>
             </div>
-            <button type="button" class="close">CONTINUE</button>
+            <div class="game-mode-btn">
+                <button class="solo-btn">
+                    <span class="material-symbols-outlined">person</span>
+                    SOLO
+                </button>
+                <button class="multiplayer-btn">
+                    <span class="material-symbols-outlined">groups</span>
+                MULTIPLAYER
+                </button>
+            </div>
         </div>
     </div>
     `

@@ -187,20 +187,33 @@ input:focus::placeholder {
     font-weight: bold;
 }
 
-.close {
+.game-mode-btn {
     width: 100%;
-    padding: 0.5rem;
+    justify-content: space-between;
     margin-top: 2rem;
-    font-size: 2rem;
+    display: flex;
+}
+
+.solo-btn, .multiplayer-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
     background-color: var(--green);
     border: none;
     cursor: pointer;
 }
 
-.close:hover {
-    background-color: var(--light-green);
+.solo-btn span, .multiplayer-btn span {
+    margin-right: 0.4rem;
 }
 
+.solo-btn:hover, .multiplayer-btn:hover {
+    background-color: var(--light-green);
+}
 
 
 @media (width <= 768px) {
