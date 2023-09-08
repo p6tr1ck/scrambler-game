@@ -1,5 +1,4 @@
 import { words } from './words.js'
-const playBtn = document.querySelector('.play-btn')
 let input
 let letters
 let timer
@@ -12,33 +11,64 @@ let time = 10
 let point = 0
 let timing
 let success = false
-
+const playBtn = document.querySelector('.play-btn')
 
 playBtn.addEventListener('click', e => {
-    document.body.innerHTML = `        
-    <div class="container">
-        <div class="time-container">
-            <h1 class="time">10</h1>
-        </div>
-        <div class="word-container">
-            <h1 class="word" id="one"></h1>
-            <h1 class="word" id="two"></h1>
-            <h1 class="word" id="three"></h1>
-            <h1 class="word" id="four"></h1>
-            <h1 class="word" id="five"></h1>
-        </div>
-        <div class="input-container">
-            <input type="text" placeholder="Enter word">
+    document.body.innerHTML = `
+    <div class="hero-container">
+        <div class="hero-card">
+            <h1>How To Play:</h1>
+            <h3>1. A Word Is Scrambled</h3>
+            <div class="instruction-word">
+                <p id="one">T</p>
+                <p id="two">O</p>
+                <p id="three">P</p>
+                <p>C</p>
+                <p>I</p>
+            </div>
+            <h3>2. You Enter What The Word Is</h3>
+            <p id="correct-input">topic</p>
+            <h3>3. You Guessed Correctly</h3>
+            <div class="correct-instruction-word">
+                <p>T</p>
+                <p>O</p>
+                <p>P</p>
+                <p>I</p>
+                <p>C</p>
+            </div>
+            <button type="button" class="close">CONTINUE</button>
         </div>
     </div>
-    <h1 class="score">Score: 0</h1>
     `
-    input = document.querySelector('input')
-    letters = document.querySelectorAll('.word')
-    timer = document.querySelector('.time')
-    score = document.querySelector('.score')
-    inputContainer = document.querySelector('.input-container')
-    selectRandomWord()
+})
+
+document.body.addEventListener('click', e => {
+    if (e.target.classList == 'close') {
+        document.body.innerHTML = `        
+            <div class="container">
+                <div class="time-container">
+                    <h1 class="time">10</h1>
+                </div>
+                <div class="word-container">
+                    <h1 class="word"></h1>
+                    <h1 class="word"></h1>
+                    <h1 class="word"></h1>
+                    <h1 class="word"></h1>
+                    <h1 class="word""></h1>
+                </div>
+                <div class="input-container">
+                    <input type="text" placeholder="Enter word">
+                </div>
+            </div>
+            <h1 class="score">Score: 0</h1>
+        `
+        input = document.querySelector('input')
+        letters = document.querySelectorAll('.word')
+        timer = document.querySelector('.time')
+        score = document.querySelector('.score')
+        inputContainer = document.querySelector('.input-container')
+        selectRandomWord()
+    }
 })
 
 
