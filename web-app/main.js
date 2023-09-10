@@ -52,7 +52,7 @@ playBtn.addEventListener('click', e => {
 })
 
 document.body.addEventListener('click', e => {
-    if (e.target.classList == 'close') {
+    if (e.target.classList == 'solo-btn') {
         document.body.innerHTML = `        
             <div class="container">
                 <div class="time-container">
