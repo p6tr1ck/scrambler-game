@@ -1,4 +1,7 @@
 import { words } from './words.js'
+import { convertNumberToWords } from './intToWord.js'
+import { playerDelete } from './playerDelete.js'
+export { classCounter }
 let input
 let letters
 let timer
@@ -11,6 +14,8 @@ let time = 10
 let point = 0
 let timing
 let success = false
+let classCounter = 0
+let multiplayer = false
 
 document.body.addEventListener('click', e => {
     if (e.target.classList == 'multiplayer-btn') {
@@ -18,25 +23,45 @@ document.body.addEventListener('click', e => {
         <div class="multiplayer-container">
             <div class="multiplayer-card">
                 <h1>Add Players</h1>
-                <div class="player-names"><h1></h1></div>
+                <div class="name-container"></div>
                 <div class="input-field">
-                    <input class="player-name" type="text" placeholder="Enter name">
+                    <input class="player-value" type="text" placeholder="Enter name">
                     <button class="add">
                         <span id="person-add" class="material-symbols-outlined">person_add</span>
                     </button>
-                    </div>
                 </div>
+                <h1 class="round-text">Rounds: 3</h1>
+                <form>
+                    <input type="range" id="round-selector" name="round-selector" min="1" max="5" step="2" value="3"/>
+                </form>
+                <button class="multiplayer-play-btn">PLAY</button>
             </div>
         </div>
         `
+        multiplayer = true
+    }
+    if (multiplayer) {
+        const roundText = document.querySelector('.round-text')
+        const roundSelector = document.querySelector('#round-selector')
+        roundSelector.oninput = function() {
+            roundText.textContent = `Rounds: ${roundSelector.value}`
+        }
     }
 })
 
 document.body.addEventListener('click', e => {
-    if (e.target.id == 'person-add') {
-        let names = document.querySelector('.player-names')
-        let playerName = document.querySelector('.player-name')
-        names.innerHTML += `<h1>${playerName.value}<h1>`
+    if ((e.target.classList.contains('add') || e.target.id == 'person-add') && (classCounter < 5)) {
+        classCounter += 1
+        document.querySelector('.name-container').innerHTML += `
+        <div class="player-names ${convertNumberToWords(classCounter)}">
+            <h1 class="player-name">${document.querySelector('.player-value').value}</h1>
+            <i class="material-symbols-outlined player-delete ${convertNumberToWords(classCounter)}">close</i>
+        </div>
+        `
+    }
+    if (e.target.classList.contains('player-delete')) {
+        classCounter -= 1
+        playerDelete(e.target, e.target.parentElement)
     }
 })
 
